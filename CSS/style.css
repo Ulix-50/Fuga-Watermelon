@@ -1,0 +1,110 @@
+
+body
+{    
+    background-image: url("../IMG/bg.png"); 
+    background-color: #AEC7A9;
+    
+}
+
+#Player
+{
+    width: 100px;
+    height: 49px;
+    background-image: url("../IMG/Player.png");    
+    position: absolute;
+    top: 108.5px;
+}
+
+#Vida
+{    
+    font-weight: bold;
+    font-size: 30px;
+    width:auto;
+    font-family: 'Courier New', Courier, monospace;
+    top: 30px;
+    color: lightcoral;
+    color: #f08080;
+}
+
+#DeadPlayer
+{
+    width: 100px;
+    height: 49px;
+    background-image: url("../IMG/DeadPlayer.png");
+    position: absolute;
+    top: 108.5px;
+}
+
+
+#VitoriaPlayer
+{
+    width: 100px;
+    height: 55px;
+    background-image: url("../IMG/PlayerVitoria.png");
+    position: absolute;
+    top: 108.5px;
+}
+
+#Mensagem
+{
+    animation: 2s AumentoDeTamanho;
+    font-weight: bolder;
+    font-size: 60px;
+    text-align: center;
+    color: #67F0DB;
+    font-family: "Bahnschrift", "Franklin Gothic Medium", 'Arial Narrow Bold', sans-serif;    
+
+}
+
+#BotaoMusicaLigado
+{
+    height: 100px;
+    width: 100px;
+    background-image: url("../IMG/BotaoMusicaNormal.png");    
+    transition: 0.5s;
+    margin-left: 95%;
+    margin-top: 1%;
+}
+
+#BotaoMusicaLigado:hover
+{
+    
+    border: 2px solid #ffffff;
+}
+
+
+#BotaoMusicaDesligado
+{
+    height: 100px;
+    width: 100px;
+    background-image: url("../IMG/BotaoMusicaMudo.png");
+    margin-left: 95%;
+    margin-top: 1%;
+    transition: 0.5s;
+}
+#BotaoMusicaDesligado:hover
+{
+    border: 2px solid #ff7e7e;
+}
+
+.aSettings
+{
+    color: violet;
+    font-size: 20px;
+    text-align: right;
+
+}
+
+@keyframes AumentoDeTamanho {
+    0%
+    {
+        font-size: 10px;
+        text-align: center;
+    }
+
+    100%
+    {
+        font-size: 60px;
+        text-align: center;
+    }
+}

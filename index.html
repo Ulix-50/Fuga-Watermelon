@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="CSS/style.css" rel="stylesheet">
+    <title>Fuga do Watermelom</title>
+</head>
+
+<body>
+    
+    <audio id="Musica" src="ASSETS/backgroundMusic.mp3"></audio>
+
+
+    <div id="Vida">
+       
+       <p>
+           Vida Jogador 1: 10
+       </p>
+       
+    </div>
+
+    <div id="Mensagem">
+        <p>
+        </p>
+    </div>
+
+    <div id="Player"  onclick="PerderVida()"></div>
+
+    <div id="DeadPlayer"></div>
+
+    <div id="VitoriaPlayer"></div>
+
+    <div id="BotaoMusicaLigado" onclick="Emudecer()"></div>
+
+    <div id="BotaoMusicaDesligado" onclick="Emudecer(), TocarMusica()"></div>
+    
+    <!-- Troca de Imagem do botão 
+        
+
+    
+    <div id="normal" onclick="mudo()">escutando</div>
+    <div id="mudo" style="display: none;">mudo</div> 
+
+
+-->
+
+    <script src="JS/main.js"></script>
+</body>
+</html>
