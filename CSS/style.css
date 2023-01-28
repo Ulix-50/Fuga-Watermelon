@@ -1,16 +1,21 @@
-
+*{
+    margin: 0;
+    height: 0;
+}
 body
 {    
     background-image: url("../IMG/bg.png"); 
     background-color: #AEC7A9;
-    
+    padding: 20px;
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 #Player
 {
-    width: 100px;
-    height: 49px;
-    background-image: url("../IMG/Player.png");    
     position: absolute;
     top: 108.5px;
 }
@@ -25,24 +30,25 @@ body
     color: lightcoral;
     color: #f08080;
 }
-
-#DeadPlayer
+#Player.sprite-jogando
+{
+    width: 100px;
+    height: 49px;
+    background-image: url("../IMG/Player.png");    
+}
+#Player.sprite-dead
 {
     width: 100px;
     height: 49px;
     background-image: url("../IMG/DeadPlayer.png");
-    position: absolute;
-    top: 108.5px;
 }
 
 
-#VitoriaPlayer
+#Player.sprite-vitoria
 {
     width: 100px;
     height: 55px;
     background-image: url("../IMG/PlayerVitoria.png");
-    position: absolute;
-    top: 108.5px;
 }
 
 #Mensagem
@@ -56,33 +62,30 @@ body
 
 }
 
-#BotaoMusicaLigado
-{
+#BotaoMusica {
     height: 100px;
     width: 100px;
-    background-image: url("../IMG/BotaoMusicaNormal.png");    
+    margin-left: auto;
+    margin-top: auto;
     transition: 0.5s;
-    margin-left: 95%;
-    margin-top: 1%;
+}
+#BotaoMusica.Ligado
+{
+    background-image: url("../IMG/BotaoMusicaNormal.png");    
 }
 
-#BotaoMusicaLigado:hover
+#BotaoMusica.Ligado:hover
 {
     
     border: 2px solid #ffffff;
 }
 
 
-#BotaoMusicaDesligado
+#BotaoMusica.Desligado
 {
-    height: 100px;
-    width: 100px;
     background-image: url("../IMG/BotaoMusicaMudo.png");
-    margin-left: 95%;
-    margin-top: 1%;
-    transition: 0.5s;
 }
-#BotaoMusicaDesligado:hover
+#BotaoMusica.Desligado:hover
 {
     border: 2px solid #ff7e7e;
 }

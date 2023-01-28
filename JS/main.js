@@ -3,72 +3,55 @@
 var qtdVida = 10;
 var posicaoX = 0;
 var posicaoY = 93;
+
 var MedidaDePosicao = "";
 var tamanhoTelaHorizontal = window.innerWidth; 
 var tamanhoTelaVertical = window.innerHeight;
-
+var player = this.document.getElementById("Player");
 var musica = document.getElementById("Musica");
-this.document.getElementById("Player").style.top = 93;
+player.style.top = 93;
 
-
+function MoverPlayerX(x){
+    posicaoX = x;
+    player.style.left = x+"px";
+}
+function MoverPlayerY(y) {
+    posicaoY = y;
+    player.style.top = y+"px";
+}
 //#endregion
 
 //#region   Métodos
 
 window.addEventListener("keydown", Andar);
-DesativarSprite("DeadPlayer");
-DesativarSprite("VitoriaPlayer");
 DesativarSprite("Mensagem");
-DesativarSprite("BotaoMusicaLigado");
 
 
 
 function Andar(Tecla)
 {
-    var TeclaSetaEsquerda = 37;
-    var TeclaSetaDireita = 39;
-    var TeclaSetaCima = 38;
-    var TeclaSetaBaixo = 40;
-
-    var SegundaTecla_Cima = 87;
-    var SegundaTecla_Baixo = 83;
-    var SegundaTecla_Esquerda = 65;
-    var SegundaTecla_Direita = 68;
-
-    if (Tecla.keyCode == TeclaSetaDireita || Tecla.keyCode == SegundaTecla_Direita)
-    {
-        posicaoX +=15.5;
-        MedidaDePosicao = posicaoX+"px";        
-        this.document.getElementById("Player").style.left = MedidaDePosicao;
-        VerificarVitoria();
-        Verificar_Bloquear_CantoEsquerdo_Cima();
-    }
-
-    if (Tecla.keyCode == TeclaSetaEsquerda || Tecla.keyCode == SegundaTecla_Esquerda)
-     {
-        posicaoX -= 15.5;
-        MedidaDePosicao = posicaoX+"px";        
-        this.document.getElementById("Player").style.left = MedidaDePosicao;
-        VerificarVitoria();
-        Verificar_Bloquear_CantoEsquerdo_Cima();
-    }
     
-    if (Tecla.keyCode == TeclaSetaBaixo || Tecla.keyCode == SegundaTecla_Baixo) {
-        posicaoY +=15.5;
-        MedidaDePosicao = posicaoY+"px";        
-        this.document.getElementById("Player").style.top = MedidaDePosicao;
-        VerificarVitoria();
-        Verificar_Bloquear_CantoEsquerdo_Cima();
-    }
+    codesDireita = [ "KeyD", "ArrowRight" ]
+    codesEsquerda = [ "KeyA", "ArrowLeft" ]
+    codesBaixo = [ "KeyS", "ArrowDown" ]
+    codesCima = [ "KeyW", "ArrowUp" ]
+
+    console.log(Tecla);
+
+    if (codesDireita.includes(Tecla.code))
+        MoverPlayerX(posicaoX + 15.5);
+
+    if (codesEsquerda.includes(Tecla.code))
+        MoverPlayerX(posicaoX - 15.5);
     
-    if (Tecla.keyCode == TeclaSetaCima || Tecla.keyCode == SegundaTecla_Cima)
-     {
-        posicaoY -=15.5;
-        MedidaDePosicao = posicaoY+"px";        
-        this.document.getElementById("Player").style.top = MedidaDePosicao;
-        VerificarVitoria();
-        Verificar_Bloquear_CantoEsquerdo_Cima();        
-    }
+    if (codesBaixo.includes(Tecla.code)) 
+        MoverPlayerY(posicaoY + 15.5);
+    
+    if (codesCima.includes(Tecla.code))
+        MoverPlayerY(posicaoY - 15.5);
+
+    VerificarVitoria();
+    VerificarBloqueio();  
     
 }
 
@@ -76,24 +59,21 @@ function PerderVida()
 {
     qtdVida--;
     this.document.getElementById("Vida").innerHTML = "Vida Jogador 1: " + qtdVida;
-    Morrer();
+    if (qtdVida <= 0) 
+        Morrer();  
 }
 
 function Morrer()
-{
-    if (qtdVida <= 0) 
-    {
-        IgualarPosicao("DeadPlayer");
-        TrocarSprite("Player", "DeadPlayer");
-        this.document.getElementById("Mensagem").style.display = "inline";
-        this.document.getElementById("Mensagem").innerHTML = "Jogador 2 venceu!";
-    }
+{ 
+    TrocarSprite("sprite-jogando", "sprite-dead");
+    this.document.getElementById("Mensagem").style.display = "inline";
+    this.document.getElementById("Mensagem").innerHTML = "Jogador 2 venceu!";
 }
 
 function TrocarSprite(spriteAtual, novoSprite)
 {
-    this.document.getElementById(spriteAtual).style.display = "none";
-    this.document.getElementById(novoSprite).style.display = "inline";
+    player.classList.remove(spriteAtual);
+    player.classList.add(novoSprite);
 }
 
 function DesativarSprite(Sprite)
@@ -104,53 +84,38 @@ function DesativarSprite(Sprite)
 function VerificarVitoria() 
 {
 
-    if (posicaoX >= tamanhoTelaHorizontal || posicaoY >= tamanhoTelaVertical)
+    if (posicaoX  >= tamanhoTelaHorizontal || posicaoY >= tamanhoTelaVertical)
     {
-        TrocarSprite("Player", "VitoriaPlayer");
-        IgualarPosicao("VitoriaPlayer");
+        TrocarSprite("sprite-jogando", "sprite-vitoria"); 
         this.document.getElementById("Mensagem").style.display = "inline";
         this.document.getElementById("Mensagem").innerHTML = "Jogador 1 venceu!";
     }
 }
 
-function IgualarPosicao(IdSprite) 
+function VerificarBloqueio()
 {
-    this.document.getElementById(IdSprite).style.top = posicaoY+"px";
-    this.document.getElementById(IdSprite).style.left = posicaoX+"px";
+    if (posicaoX < 0) 
+        MoverPlayerX(0);
+    if (posicaoX > tamanhoTelaHorizontal)
+        MoverPlayerX(tamanhoTelaHorizontal);
+
+    
+    if (posicaoY < 0) 
+        MoverPlayerY(0)
+    if (posicaoY > tamanhoTelaVertical)
+        MoverPlayerY(tamanhoTelaVertical);
+        
+    
 }
 
 
-function Verificar_Bloquear_CantoEsquerdo_Cima()
+function ClickBotaoMusica() 
 {
-    if (posicaoX <0) {
-        posicaoX = 0;
-        this.document.getElementById("Player").style.top = posicaoY;
-    }
-    if (posicaoY < 0) {
-        posicaoY = 0;
-        this.document.getElementById("Player").style.left = posicaoX;
-    }
-}
-
-function Emudecer() 
-{
-    if (!musica.muted) 
-    {
-        musica.muted = true;
-        this.document.getElementById("BotaoMusicaLigado").style.display = "none"; 
-        this.document.getElementById("BotaoMusicaDesligado").style.display = "inline-flex";
-    } 
-    else 
-    {
-        musica.muted = false;
-        this.document.getElementById("BotaoMusicaDesligado").style.display = "none";
-        this.document.getElementById("BotaoMusicaLigado").style.display = "inline-flex";
-    }
-}
-
-function TocarMusica() 
-{
-    musica.play();
+    musica.muted = !musica.muted 
+    if(!musica.muted)
+        musica.play();
+    
+    this.document.getElementById("BotaoMusica").classList = musica.muted ? "Desligado" :  "Ligado"
 }
 
 
