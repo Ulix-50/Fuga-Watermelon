@@ -16,4 +16,4 @@ Música de fundo: *Banana Song* made by *106*.
 
 *Notas Pessoais*: Este é um dos códigos de que mais tenho orgulho. Devido à organização. Fiz ele ainda no começo, logo muitas coisas foram feitas na base da gambiarra, mas ainda sim, se mantém um código limpo e compreensível. Espero em algum momento passe esse jogo de uma forma mais "jogável" ao phaser. Aguardem 😁
 
-**LEMBRANDO QUE O JOGO (O QUE INCLUI CÓDIGO E DESIGN) SÃO DE MINHA AUTORIA E NÃO DEVEM SER USADOS SEM A MINHA PERMISSÃO.**
+**LEMBRANDO QUE O JOGO (O QUE INCLUI CÓDIGO, DESIGN E PERSONAGEM) SÃO DE MINHA AUTORIA E NÃO DEVEM SER USADOS SEM A MINHA PERMISSÃO.**
